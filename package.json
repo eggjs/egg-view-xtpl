@@ -13,7 +13,12 @@
     "eggPlugin",
     "egg-plugin"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "copy-to": "^2.0.1",
+    "iconv-lite": "^0.4.15",
+    "lru-cache": "^4.0.2",
+    "xtemplate": "^4.6.0"
+  },
   "devDependencies": {
     "autod": "^2.7.1",
     "egg": "^0.7.0",
@@ -38,8 +43,6 @@
   },
   "files": [
     "index.js",
-    "app.js",
-    "agent.js",
     "config",
     "app",
     "lib"
