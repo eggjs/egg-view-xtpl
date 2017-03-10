@@ -32,6 +32,8 @@ $ npm i egg-view-xtpl --save
 
 ## Usage
 
+### Configuration
+
 ```js
 // {app_root}/config/plugin.js
 exports.xtpl = {
@@ -40,12 +42,17 @@ exports.xtpl = {
 };
 ```
 
-## Configuration
-
 ```js
 // {app_root}/config/config.default.js
-exports.view-xtpl = {
+exports.view = {
+  mapping: {
+    '.xtpl': 'xtpl',
+  },
 };
+
+// xtpl config
+exports.xtpl = {};
+
 ```
 
 see [config/config.default.js](config/config.default.js) for more detail.

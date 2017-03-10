@@ -83,8 +83,7 @@ describe('test/view/view.test.js', () => {
     mm(app.logger, 'error', () => { });
     request(app.callback())
       .get('/error')
-      .expect(/no such file or directory/)
-      .expect(404, done);
+      .expect(500, done);
   });
 
   it('should view will change if file was changed and without cache config', done => {
@@ -115,6 +114,7 @@ describe('test/view/view.test.js', () => {
       .expect(200)
       .end(err => {
         assert(!err);
+        // done();
         fs.writeFile(cacheTmpFile, CHANGE_TEMP, err2 => {
           assert(!err2);
           setTimeout(() => {
