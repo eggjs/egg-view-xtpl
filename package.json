@@ -1,7 +1,7 @@
 {
   "name": "egg-view-xtpl",
   "version": "0.0.1",
-  "description": "xtpl plugin for egg",
+  "description": "egg view plugin for xtemplate",
   "eggPlugin": {
     "name": "xtpl",
     "dependencies": [
