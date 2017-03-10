@@ -20,56 +20,73 @@
 [download-image]: https://img.shields.io/npm/dm/egg-view-xtpl.svg?style=flat-square
 [download-url]: https://npmjs.org/package/egg-view-xtpl
 
-<!--
-Description here.
--->
+egg 的 [xtemplate](https://github.com/xtemplate/xtemplate) 模板插件
 
-## 依赖说明
+## 安装
 
-### 依赖的 egg 版本
+```bash
+$ npm i egg-view-xtpl --save
+```
 
-egg-view-xtpl 版本 | egg 1.x
---- | ---
-1.x | 😁
-0.x | ❌
+## 用法
 
-### 依赖的插件
-<!--
-
-如果有依赖其它插件，请在这里特别说明。如
-
-- security
-- multipart
-
--->
-
-## 开启插件
+### 配置
 
 ```js
-// config/plugin.js
+// {app_root}/config/plugin.js
 exports.xtpl = {
   enable: true,
   package: 'egg-view-xtpl',
 };
 ```
 
-## 使用场景
+```js
+// {app_root}/config/config.default.js
+exports.view = {
+  mapping: {
+    '.xtpl': 'xtpl',
+  },
+};
 
-- Why and What: 描述为什么会有这个插件，它主要在完成一件什么事情。
-尽可能描述详细。
-- How: 描述这个插件是怎样使用的，具体的示例代码，甚至提供一个完整的示例，并给出链接。
+// xtpl config
+exports.xtpl = {};
 
-## 详细配置
+```
 
-请到 [config/config.default.js](config/config.default.js) 查看详细配置项说明。
+更多参考： [config/config.default.js](config/config.default.js).
 
-## 单元测试
+### 示例
 
-<!-- 描述如何在单元测试中使用此插件，例如 schedule 如何触发。无则省略。-->
+#### Demo
 
-## 提问交流
+```html
+// app/view/hello.xtpl
+hello {{ data }}
+```
 
-请到 [egg issues](https://github.com/eggjs/egg/issues) 异步交流。
+Render it
+
+```js
+// app/controller/render.js
+exports.xtpl = function* () {
+  yield ctx.render('hello.xtpl', {
+    data: 'world',
+  });
+};
+```
+
+#### Include
+
+可以引用相对路径的其他模板：
+
+```html
+// app/view/a.ejs include app/view/b.xtpl
+{{ include('./b.xtpl') }}
+```
+
+## 问题 & 建议
+
+请在 [这里](https://github.com/eggjs/egg/issues) 开 issue.
 
 ## License
 

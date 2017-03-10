@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = app => {
-  console.log('app.config.env =', app.config.env);
+  app.view.use('xtpl', require('./lib/view'));
 };

@@ -20,9 +20,7 @@
 [download-image]: https://img.shields.io/npm/dm/egg-view-xtpl.svg?style=flat-square
 [download-url]: https://npmjs.org/package/egg-view-xtpl
 
-<!--
-Description here.
--->
+egg view plugin for [xtemplate](https://github.com/xtemplate/xtemplate).
 
 ## Install
 
@@ -32,6 +30,8 @@ $ npm i egg-view-xtpl --save
 
 ## Usage
 
+### Configuration
+
 ```js
 // {app_root}/config/plugin.js
 exports.xtpl = {
@@ -40,19 +40,49 @@ exports.xtpl = {
 };
 ```
 
-## Configuration
-
 ```js
 // {app_root}/config/config.default.js
-exports.view-xtpl = {
+exports.view = {
+  mapping: {
+    '.xtpl': 'xtpl',
+  },
 };
+
+// xtpl config
+exports.xtpl = {};
+
 ```
 
 see [config/config.default.js](config/config.default.js) for more detail.
 
-## Example
+### Example
 
-<!-- example here -->
+#### Demo
+
+```html
+// app/view/hello.xtpl
+hello {{ data }}
+```
+
+Render it
+
+```js
+// app/controller/render.js
+exports.xtpl = function* () {
+  yield ctx.render('hello.xtpl', {
+    data: 'world',
+  });
+};
+```
+
+#### Include
+
+You can include both relative file.
+
+```html
+// app/view/a.ejs include app/view/b.xtpl
+{{ include('./b.xtpl') }}
+```
 
 ## Questions & Suggestions
 

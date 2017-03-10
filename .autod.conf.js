@@ -5,7 +5,6 @@ module.exports = {
   prefix: '^',
   test: [
     'test',
-    'benchmark',
   ],
   devdep: [
     'egg',

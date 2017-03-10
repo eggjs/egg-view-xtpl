@@ -1,0 +1,8 @@
+{{ include('./header.xtpl') }}
+<h1>
+  Hi, {{ name }}
+</h1>
+<p>
+  My page
+</p>
+{{ include('./footer.xtpl') }}
