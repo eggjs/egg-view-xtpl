@@ -10,7 +10,6 @@ module.exports = {
     'egg',
     'egg-ci',
     'egg-bin',
-    'egg-view',
     'autod',
     'eslint',
     'eslint-config-egg',

@@ -29,7 +29,6 @@
     "egg-bin": "^2.4.0",
     "egg-ci": "^1.5.0",
     "egg-mock": "^3.1.2",
-    "egg-view": "^1.0.1",
     "eslint": "^3.17.1",
     "eslint-config-egg": "^3.2.0",
     "supertest": "^3.0.0",
