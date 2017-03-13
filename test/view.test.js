@@ -4,7 +4,7 @@ const request = require('supertest');
 const mm = require('egg-mock');
 const assert = require('assert');
 const path = require('path');
-const fs = require('fs');
+const fs = require('mz/fs');
 
 describe('test/view/view.test.js', () => {
   const demoViewPath = 'test/fixtures/apps/xtpl-demo/app/view';
