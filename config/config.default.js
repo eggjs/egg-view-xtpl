@@ -1,8 +1,6 @@
 'use strict';
 
-const path = require('path');
-
-module.exports = appInfo => {
+module.exports = () => {
   const config = {};
 
   /**

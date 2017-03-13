@@ -19,6 +19,7 @@
   "dependencies": {
     "copy-to": "^2.0.1",
     "debug": "^2.6.1",
+    "fs-then": "^0.2.0",
     "iconv-lite": "^0.4.15",
     "lru-cache": "^4.0.2",
     "xtemplate": "^4.6.0"

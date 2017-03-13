@@ -1,7 +1,8 @@
 'use strict';
 
 module.exports = function* () {
-  this.body = yield this.renderString('foo {{ name }}', {
+  yield this.render('home.xtpl', {
     name: 'ngot',
   });
+  this.app.xtpl.fnCache.reset();
 };

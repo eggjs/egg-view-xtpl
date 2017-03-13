@@ -31,15 +31,15 @@ describe('test/view/view.test.js', () => {
   before(function* () {
     app = mm.app({
       baseDir: 'apps/xtpl-demo',
-      plugin: 'view',
     });
     cacheApp = mm.app({
       baseDir: 'apps/xtpl-cache',
-      plugin: 'view',
     });
 
     cpFile();
-    yield [ app.ready(), cacheApp.ready() ];
+    yield [
+      app.ready(), cacheApp.ready(),
+    ];
   });
 
   after(delFiles);
@@ -54,6 +54,14 @@ describe('test/view/view.test.js', () => {
       .expect(200, done);
   });
 
+  it('should render tpl with include work', done => {
+    request(app.callback())
+      .get('/gbk')
+      .expect('content-type', 'text/html; charset=utf-8')
+      .expect('< 你好 ngot')
+      .expect(200, done);
+  });
+
   it('should render tpl with defaultExtension ok', done => {
     request(app.callback())
       .get('/noExt')
@@ -62,7 +70,7 @@ describe('test/view/view.test.js', () => {
       .expect(200, done);
   });
 
-  it('should render string', done => {
+  it('should render plain string', done => {
     request(app.callback())
       .get('/str')
       .expect('content-type', 'text/plain; charset=utf-8')
@@ -70,12 +78,20 @@ describe('test/view/view.test.js', () => {
       .expect(200, done);
   });
 
-  it('should render string', done => {
+  it('should render html string', done => {
     request(app.callback())
       .get('/strHtml')
       .expect('content-type', 'text/html; charset=utf-8')
       .expect('<foo ngot')
       .expect(200, done);
+  });
+
+  it('should throw error when render wrong tpl', done => {
+    request(app.callback())
+      .get('/tplError')
+      .expect(200)
+      .expect('content-type', 'text/plain; charset=utf-8')
+      .expect('xtemplate error', done);
   });
 
   it('should throw error when render wrong string', done => {
@@ -94,60 +110,65 @@ describe('test/view/view.test.js', () => {
       .expect(500, done);
   });
 
-  it('should view will change if file was changed and without cache config', done => {
-    request(app.callback())
-      .get('/')
-      .expect('content-type', 'text/html; charset=utf-8')
-      .expect(sourceHTML)
-      .expect(200)
-      .end(err => {
-        assert(!err);
-        fs.writeFile(demoTmpFile, CHANGE_TEMP, err2 => {
-          assert(!err2);
-          setTimeout(() => {
-            request(app.callback())
-              .get('/')
-              .expect(200)
-              .expect(CHANGE_TEMP, done);
-          }, 500);
+  describe('cache', () => {
+    it('should view change if file was changed and without cache config', done => {
+      request(app.callback())
+        .get('/')
+        .expect('content-type', 'text/html; charset=utf-8')
+        .expect(sourceHTML)
+        .expect(200)
+        .end(err => {
+          assert(!err);
+          fs.writeFile(demoTmpFile, CHANGE_TEMP, err2 => {
+            assert(!err2);
+            setTimeout(() => {
+              request(app.callback())
+                .get('/')
+                .expect(200)
+                .expect(CHANGE_TEMP, done);
+            }, 500);
+          });
         });
-      });
-  });
+    });
 
-  it('should cache view if file was changed and with cache config when render', done => {
-    request(cacheApp.callback())
-      .get('/cache')
-      .expect('content-type', 'text/html; charset=utf-8')
-      .expect(sourceHTML)
-      .expect(200)
-      .end(err => {
-        assert(!err);
-        // done();
-        fs.writeFile(cacheTmpFile, CHANGE_TEMP, err2 => {
-          assert(!err2);
-          setTimeout(() => {
-            request(cacheApp.callback())
-              .get('/cache')
-              .expect(200)
-              .expect(sourceHTML, done);
-          }, 500);
+    it('should cache view if fileCache works ok', done => {
+      request(cacheApp.callback())
+        .get('/fileCache')
+        .expect('content-type', 'text/html; charset=utf-8')
+        .expect(sourceHTML)
+        .expect(200)
+        .end(err => {
+          assert(!err);
+          fs.writeFile(cacheTmpFile, CHANGE_TEMP, err2 => {
+            assert(!err2);
+            setTimeout(() => {
+              request(cacheApp.callback())
+                .get('/fileCache')
+                .expect(200)
+                .expect(sourceHTML, done);
+            }, 500);
+          });
         });
-      });
-  });
+    });
 
-  it('should cache view if file was changed and with cache config when renderString', done => {
-    request(cacheApp.callback())
-      .get('/cacheString')
-      .expect('content-type', 'text/plain; charset=utf-8')
-      .expect('foo ngot')
-      .expect(200)
-      .end(err => {
-        assert(!err);
-        request(cacheApp.callback())
-          .get('/cacheString')
-          .expect('content-type', 'text/plain; charset=utf-8')
-          .expect(200)
-          .expect('foo ngot', done);
-      });
+    it('should cache view if fnCache works ok', done => {
+      request(cacheApp.callback())
+        .get('/fnCache')
+        .expect('content-type', 'text/html; charset=utf-8')
+        .expect(sourceHTML)
+        .expect(200)
+        .end(err => {
+          assert(!err);
+          fs.writeFile(cacheTmpFile, CHANGE_TEMP, err2 => {
+            assert(!err2);
+            setTimeout(() => {
+              request(cacheApp.callback())
+                .get('/fnCache')
+                .expect(200)
+                .expect(sourceHTML, done);
+            }, 500);
+          });
+        });
+    });
   });
 });
