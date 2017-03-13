@@ -13,7 +13,6 @@ module.exports = appInfo => {
    */
   config.xtpl = {
     cache: true,
-    loadpath: path.join(appInfo.baseDir, 'app', 'view'),
   };
 
   return config;

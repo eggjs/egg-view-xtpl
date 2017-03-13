@@ -54,6 +54,14 @@ describe('test/view/view.test.js', () => {
       .expect(200, done);
   });
 
+  it('should render tpl with defaultExtension ok', done => {
+    request(app.callback())
+      .get('/noExt')
+      .expect('content-type', 'text/html; charset=utf-8')
+      .expect(sourceHTML)
+      .expect(200, done);
+  });
+
   it('should render string', done => {
     request(app.callback())
       .get('/str')

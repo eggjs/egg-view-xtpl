@@ -6,6 +6,7 @@ exports.view = {
      '.xtpl': 'xtpl',
      '.html': 'xtpl',
    },
+   defaultExtension: '.xtpl',
  };
 
 exports.keys = '123';
