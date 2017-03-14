@@ -1,18 +1,18 @@
 'use strict';
 
-const XTPL = Symbol('app#XTPL');
-const ENGINE = require('../../lib/engine');
+const XTPLSYMBOL = Symbol('app#xtpl');
+const engine = require('../../lib/engine');
 
 module.exports = {
 
   /**
-   * xtpl environment
-   * @member {XTPLEnvironment} Application#xtpl
+   * xtpl instance
+   * @member {xtpl} Application#xtpl
    */
   get xtpl() {
-    if (!this[XTPL]) {
-      this[XTPL] = ENGINE(this);
+    if (!this[XTPLSYMBOL]) {
+      this[XTPLSYMBOL] = engine(this);
     }
-    return this[XTPL];
+    return this[XTPLSYMBOL];
   },
 };

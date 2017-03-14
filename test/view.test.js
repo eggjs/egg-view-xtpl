@@ -131,26 +131,6 @@ describe('test/view/view.test.js', () => {
         });
     });
 
-    it('should cache view if fileCache works ok', done => {
-      request(cacheApp.callback())
-        .get('/fileCache')
-        .expect('content-type', 'text/html; charset=utf-8')
-        .expect(sourceHTML)
-        .expect(200)
-        .end(err => {
-          assert(!err);
-          fs.writeFile(cacheTmpFile, CHANGE_TEMP, err2 => {
-            assert(!err2);
-            setTimeout(() => {
-              request(cacheApp.callback())
-                .get('/fileCache')
-                .expect(200)
-                .expect(sourceHTML, done);
-            }, 500);
-          });
-        });
-    });
-
     it('should cache view if fnCache works ok', done => {
       request(cacheApp.callback())
         .get('/fnCache')
