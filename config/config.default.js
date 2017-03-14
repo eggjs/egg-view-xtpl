@@ -11,6 +11,8 @@ module.exports = () => {
    */
   config.xtpl = {
     cache: true,
+    catchError: process.env.NODE_ENV !== 'production',
+    encoding: 'utf-8',
   };
 
   return config;
