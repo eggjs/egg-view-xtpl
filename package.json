@@ -14,7 +14,8 @@
     "xtemplate",
     "template",
     "eggPlugin",
-    "egg-plugin"
+    "egg-plugin",
+    "egg-view"
   ],
   "dependencies": {
     "debug": "^2.6.3",

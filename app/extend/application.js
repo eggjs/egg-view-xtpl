@@ -1,6 +1,6 @@
 'use strict';
 
-const XTPLSYMBOL = Symbol('app#xtpl');
+const XTPL = Symbol('app#xtpl');
 const engine = require('../../lib/engine');
 
 module.exports = {
@@ -10,9 +10,9 @@ module.exports = {
    * @member {xtpl} Application#xtpl
    */
   get xtpl() {
-    if (!this[XTPLSYMBOL]) {
-      this[XTPLSYMBOL] = engine(this);
+    if (!this[XTPL]) {
+      this[XTPL] = engine(this);
     }
-    return this[XTPLSYMBOL];
+    return this[XTPL];
   },
 };
