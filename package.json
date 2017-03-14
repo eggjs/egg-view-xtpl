@@ -14,18 +14,19 @@
     "xtemplate",
     "template",
     "eggPlugin",
-    "egg-plugin"
+    "egg-plugin",
+    "egg-view"
   ],
   "dependencies": {
-    "copy-to": "^2.0.1",
-    "debug": "^2.6.1",
+    "debug": "^2.6.3",
     "iconv-lite": "^0.4.15",
     "lru-cache": "^4.0.2",
+    "mz": "^2.6.0",
     "xtemplate": "^4.6.0"
   },
   "devDependencies": {
     "autod": "^2.7.1",
-    "egg": "^1.0.0-rc.2",
+    "egg": "^1.0.0-rc.3",
     "egg-bin": "^2.4.0",
     "egg-ci": "^1.5.0",
     "egg-mock": "^3.1.2",

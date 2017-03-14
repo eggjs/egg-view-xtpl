@@ -1,6 +1,5 @@
 'use strict';
 
-module.exports = function(app) {
-  app.get('/cache', app.controller.cache);
-  app.get('/cacheString', app.controller.cacheString);
+module.exports = app => {
+  app.get('/fnCache', app.controller.fnCache);
 };

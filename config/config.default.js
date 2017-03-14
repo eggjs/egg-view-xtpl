@@ -1,8 +1,6 @@
 'use strict';
 
-const path = require('path');
-
-module.exports = appInfo => {
+module.exports = () => {
   const config = {};
 
   /**
@@ -13,7 +11,8 @@ module.exports = appInfo => {
    */
   config.xtpl = {
     cache: true,
-    loadpath: path.join(appInfo.baseDir, 'app', 'view'),
+    catchError: process.env.NODE_ENV !== 'production',
+    encoding: 'utf-8',
   };
 
   return config;
