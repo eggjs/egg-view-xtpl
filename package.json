@@ -18,6 +18,7 @@
     "egg-view"
   ],
   "dependencies": {
+    "co": "^4.6.0",
     "debug": "^2.6.3",
     "iconv-lite": "^0.4.15",
     "lru-cache": "^4.0.2",
