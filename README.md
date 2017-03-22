@@ -69,7 +69,7 @@ Render it
 ```js
 // app/controller/render.js
 exports.xtpl = function* () {
-  yield ctx.render('hello.xtpl', {
+  yield this.render('hello.xtpl', {
     data: 'world',
   });
 };
