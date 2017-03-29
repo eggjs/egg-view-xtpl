@@ -15,9 +15,9 @@ describe('test/view/view.test.js', () => {
   let app;
   let cacheApp;
 
-  const sourceHTML = '<p>This is header</p>\n<hr>\n\n\nthis is logo\n\nthis is scrool\n\n\n<h1>\n  Hi, ngot\n</h1>\n<p>\n  My page\n</p>\n<hr>\n<p>This is footer</p>\n\n';
-  const cacheAppSourceHTML = '<p>This is header</p>\n<hr>\n\n<h1>\n  Hi, ngot\n</h1>\n<p>\n  My page\n</p>\n<hr>\n<p>This is footer</p>\n\n';
-  const CHANGE_TEMP = 'TEMPLATE CHANGED.\n';
+  const sourceHTML = '<p>This is header</p>\n<hr>this is logo\n\nthis is scrool<h1>  Hi, ngot</h1><p>  My page</p><hr><p>This is footer</p>';
+  const cacheAppSourceHTML = '<p>This is header</p><hr><h1>  Hi, ngot</h1><p>  My page</p><hr><p>This is footer</p>';
+  const CHANGE_TEMP = 'TEMPLATE CHANGED.';
 
   const cpFile = () => {
     fs.writeFileSync(demoTmpFile, fs.readFileSync(path.join(demoViewPath, 'home.default.xtpl')));
@@ -51,7 +51,10 @@ describe('test/view/view.test.js', () => {
     request(app.callback())
       .get('/')
       .expect('content-type', 'text/html; charset=utf-8')
-      .expect(sourceHTML)
+      .expect(r => {
+        const res = r.text.replace(/\r\n/, '')
+        assert(res, sourceHTML);
+      })
       .expect(200, done);
   });
 
@@ -67,7 +70,10 @@ describe('test/view/view.test.js', () => {
     request(app.callback())
       .get('/noExt')
       .expect('content-type', 'text/html; charset=utf-8')
-      .expect(sourceHTML)
+      .expect(r => {
+        const res = r.text.replace(/\r\n/, '')
+        assert(res, sourceHTML);
+      })
       .expect(200, done);
   });
 
@@ -116,7 +122,10 @@ describe('test/view/view.test.js', () => {
       request(app.callback())
         .get('/')
         .expect('content-type', 'text/html; charset=utf-8')
-        .expect(sourceHTML)
+        .expect(r => {
+          const res = r.text.replace(/\r\n/, '')
+          assert(res, sourceHTML);
+        })
         .expect(200)
         .end(err => {
           assert(!err);
@@ -136,7 +145,10 @@ describe('test/view/view.test.js', () => {
       request(cacheApp.callback())
         .get('/fnCache')
         .expect('content-type', 'text/html; charset=utf-8')
-        .expect(cacheAppSourceHTML)
+        .expect(r => {
+          const res = r.text.replace(/\r\n/, '')
+          assert(res, cacheAppSourceHTML);
+        })
         .expect(200)
         .end(err => {
           assert(!err);
@@ -146,7 +158,10 @@ describe('test/view/view.test.js', () => {
               request(cacheApp.callback())
                 .get('/fnCache')
                 .expect(200)
-                .expect(cacheAppSourceHTML, done);
+                .expect(r => {
+                  const res = r.text.replace(/\r\n/, '')
+                  assert(res, cacheAppSourceHTML);
+                }).end(done);
             }, 500);
           });
         });
