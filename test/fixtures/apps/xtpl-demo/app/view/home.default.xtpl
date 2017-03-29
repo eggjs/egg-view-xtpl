@@ -1,8 +1,11 @@
 {{ include('./header.xtpl') }}
+
+{{ include('./banner/logo.xtpl') }}
+
 <h1>
   Hi, {{ name }}
 </h1>
 <p>
   My page
 </p>
-{{ include('./footer.xtpl') }}
+{{ include('footer.xtpl') }}
