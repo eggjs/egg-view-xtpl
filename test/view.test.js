@@ -52,7 +52,7 @@ describe('test/view/view.test.js', () => {
       .get('/')
       .expect('content-type', 'text/html; charset=utf-8')
       .expect(r => {
-        const res = r.text.replace(/\r\n/, '')
+        const res = r.text.replace(/\r\n/, '');
         assert(res, sourceHTML);
       })
       .expect(200, done);
@@ -71,7 +71,7 @@ describe('test/view/view.test.js', () => {
       .get('/noExt')
       .expect('content-type', 'text/html; charset=utf-8')
       .expect(r => {
-        const res = r.text.replace(/\r\n/, '')
+        const res = r.text.replace(/\r\n/, '');
         assert(res, sourceHTML);
       })
       .expect(200, done);
@@ -123,7 +123,7 @@ describe('test/view/view.test.js', () => {
         .get('/')
         .expect('content-type', 'text/html; charset=utf-8')
         .expect(r => {
-          const res = r.text.replace(/\r\n/, '')
+          const res = r.text.replace(/\r\n/, '');
           assert(res, sourceHTML);
         })
         .expect(200)
@@ -146,7 +146,7 @@ describe('test/view/view.test.js', () => {
         .get('/fnCache')
         .expect('content-type', 'text/html; charset=utf-8')
         .expect(r => {
-          const res = r.text.replace(/\r\n/, '')
+          const res = r.text.replace(/\r\n/, '');
           assert(res, cacheAppSourceHTML);
         })
         .expect(200)
@@ -159,9 +159,10 @@ describe('test/view/view.test.js', () => {
                 .get('/fnCache')
                 .expect(200)
                 .expect(r => {
-                  const res = r.text.replace(/\r\n/, '')
+                  const res = r.text.replace(/\r\n/, '');
                   assert(res, cacheAppSourceHTML);
-                }).end(done);
+                })
+                .end(done);
             }, 500);
           });
         });
