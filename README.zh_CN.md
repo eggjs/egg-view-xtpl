@@ -80,8 +80,18 @@ exports.xtpl = function* () {
 可以引用相对路径的其他模板：
 
 ```html
-// app/view/a.ejs include app/view/b.xtpl
+// app/view/a.xtpl include app/view/b.xtpl
 {{ include('./b.xtpl') }}
+```
+
+```html
+// app/view/a.xtpl include app/view/c.xtpl
+{{ include('c.xtpl') }}
+```
+
+```html
+// app/view/banner/item.xtpl include app/view/footer/logo.xtpl
+{{ include('../footer/logo.xtpl') }}
 ```
 
 ## 问题 & 建议
