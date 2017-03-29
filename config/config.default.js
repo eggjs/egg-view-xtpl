@@ -1,6 +1,8 @@
 'use strict';
 
-module.exports = () => {
+const path = require('path');
+
+module.exports = appInfo => {
   const config = {};
 
   /**
@@ -10,6 +12,7 @@ module.exports = () => {
    * @property {String} loadpath - the path to load view files.default to `true` except `false` at local env.
    */
   config.xtpl = {
+    root: path.join(appInfo.baseDir, 'app/view'),
     cache: true,
     catchError: process.env.NODE_ENV !== 'production',
     encoding: 'utf-8',

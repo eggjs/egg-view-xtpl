@@ -15,7 +15,8 @@ describe('test/view/view.test.js', () => {
   let app;
   let cacheApp;
 
-  const sourceHTML = '<p>This is header</p>\n<hr>\n\n<h1>\n  Hi, ngot\n</h1>\n<p>\n  My page\n</p>\n<hr>\n<p>This is footer</p>\n\n';
+  const sourceHTML = '<p>This is header</p>\n<hr>\n\n\nthis is logo\n\nthis is scrool\n\n\n<h1>\n  Hi, ngot\n</h1>\n<p>\n  My page\n</p>\n<hr>\n<p>This is footer</p>\n\n';
+  const cacheAppSourceHTML = '<p>This is header</p>\n<hr>\n\n<h1>\n  Hi, ngot\n</h1>\n<p>\n  My page\n</p>\n<hr>\n<p>This is footer</p>\n\n';
   const CHANGE_TEMP = 'TEMPLATE CHANGED.\n';
 
   const cpFile = () => {
@@ -135,7 +136,7 @@ describe('test/view/view.test.js', () => {
       request(cacheApp.callback())
         .get('/fnCache')
         .expect('content-type', 'text/html; charset=utf-8')
-        .expect(sourceHTML)
+        .expect(cacheAppSourceHTML)
         .expect(200)
         .end(err => {
           assert(!err);
@@ -145,7 +146,7 @@ describe('test/view/view.test.js', () => {
               request(cacheApp.callback())
                 .get('/fnCache')
                 .expect(200)
-                .expect(sourceHTML, done);
+                .expect(cacheAppSourceHTML, done);
             }, 500);
           });
         });

@@ -77,11 +77,21 @@ exports.xtpl = function* () {
 
 #### Include
 
-You can include both relative file.
+You can include relative file.
 
 ```html
-// app/view/a.ejs include app/view/b.xtpl
+// app/view/a.xtpl include app/view/b.xtpl
 {{ include('./b.xtpl') }}
+```
+
+```html
+// app/view/a.xtpl include app/view/c.xtpl
+{{ include('c.xtpl') }}
+```
+
+```html
+// app/view/banner/item.xtpl include app/view/footer/logo.xtpl
+{{ include('../footer/logo.xtpl') }}
 ```
 
 ## Questions & Suggestions
