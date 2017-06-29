@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "autod": "^2.8.0",
+    "cheerio": "^1.0.0-rc.1",
     "egg": "^1.5.0",
     "egg-bin": "^4.0.4",
     "egg-ci": "^1.8.0",
